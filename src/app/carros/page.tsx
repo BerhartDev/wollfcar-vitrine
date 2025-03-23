@@ -10,12 +10,12 @@ export default function CarsPage() {
           {/* Filters */}
           <div className="w-full md:w-64 space-y-4">
             <div>
-              <label htmlFor="marca" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="brand" className="block text-sm font-medium text-gray-700">
                 Marca
               </label>
               <select
-                id="marca"
-                name="marca"
+                id="brand"
+                name="brand"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
               >
                 <option value="">Todas</option>
@@ -26,26 +26,26 @@ export default function CarsPage() {
             </div>
 
             <div>
-              <label htmlFor="preco" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="price" className="block text-sm font-medium text-gray-700">
                 Preço Máximo
               </label>
               <input
                 type="number"
-                id="preco"
-                name="preco"
+                id="price"
+                name="price"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                 placeholder="R$ 0,00"
               />
             </div>
 
             <div>
-              <label htmlFor="ano" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="year" className="block text-sm font-medium text-gray-700">
                 Ano Mínimo
               </label>
               <input
                 type="number"
-                id="ano"
-                name="ano"
+                id="year"
+                name="year"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                 placeholder="2020"
               />

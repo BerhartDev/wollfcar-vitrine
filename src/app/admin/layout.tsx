@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import Layout from '@/components/Layout';
 
@@ -6,12 +9,14 @@ interface AdminLayoutProps {
 }
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
-  // TODO: Implement authentication check
-  const isAuthenticated = false;
-
-  if (!isAuthenticated) {
-    redirect('/admin/login');
-  }
+  useEffect(() => {
+    // TODO: Implement proper authentication check
+    const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+    
+    if (!isAuthenticated && window.location.pathname !== '/admin/login') {
+      redirect('/admin/login');
+    }
+  }, []);
 
   return (
     <Layout>

@@ -24,30 +24,36 @@ export default function CarDetailsPage({ params }: CarDetailsPageProps) {
     );
   }
 
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(value);
+  };
+
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Image Gallery */}
           <div className="space-y-4">
-            <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+            <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
               <Image
-                src={car.images[0]}
+                src={car.images[0] || '/images/placeholder.jpg'}
                 alt={`${car.brand} ${car.model}`}
                 width={800}
                 height={600}
                 className="object-cover"
-                priority
               />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               {car.images.slice(1).map((image, index) => (
                 <div key={index} className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
                   <Image
                     src={image}
-                    alt={`${car.brand} ${car.model} - View ${index + 2}`}
-                    width={400}
-                    height={300}
+                    alt={`${car.brand} ${car.model} - Imagem ${index + 2}`}
+                    width={200}
+                    height={200}
                     className="object-cover"
                   />
                 </div>
@@ -56,54 +62,47 @@ export default function CarDetailsPage({ params }: CarDetailsPageProps) {
           </div>
 
           {/* Car Details */}
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              {car.brand} {car.model}
-            </h1>
-            <p className="mt-2 text-4xl font-bold text-primary-600">
-              {car.price.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              })}
-            </p>
-            <div className="mt-6 border-t border-gray-200 pt-6">
-              <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Ano</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{car.year}</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Quilometragem</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{car.mileage.toLocaleString()} km</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Câmbio</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{car.transmission}</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Combustível</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{car.fuel}</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Cor</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{car.color}</dd>
-                </div>
-              </dl>
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">{car.brand} {car.model}</h1>
+              <p className="text-2xl font-semibold text-primary-600 mt-2">
+                {formatCurrency(car.price)}
+              </p>
             </div>
-            <div className="mt-6 border-t border-gray-200 pt-6">
-              <h3 className="text-sm font-medium text-gray-900">Descrição</h3>
-              <div className="mt-2 text-sm text-gray-500">
-                <p>{car.description}</p>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Ano</h3>
+                <p className="mt-1 text-lg text-gray-900">{car.year}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Quilometragem</h3>
+                <p className="mt-1 text-lg text-gray-900">{car.mileage.toLocaleString('pt-BR')} km</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Câmbio</h3>
+                <p className="mt-1 text-lg text-gray-900">{car.transmission}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Combustível</h3>
+                <p className="mt-1 text-lg text-gray-900">{car.fuel}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Cor</h3>
+                <p className="mt-1 text-lg text-gray-900">{car.color}</p>
               </div>
             </div>
-            <div className="mt-6 border-t border-gray-200 pt-6">
-              <button
-                type="button"
-                className="w-full bg-primary-600 text-white py-3 px-4 rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-              >
-                Entrar em Contato
-              </button>
+
+            <div>
+              <h3 className="text-sm font-medium text-gray-500">Descrição</h3>
+              <p className="mt-1 text-lg text-gray-900">{car.description}</p>
             </div>
+
+            <button
+              className="w-full bg-primary-600 text-white py-3 px-6 rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+            >
+              Entrar em Contato
+            </button>
           </div>
         </div>
       </div>

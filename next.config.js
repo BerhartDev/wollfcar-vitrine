@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
     remotePatterns: [
       {
@@ -10,6 +11,7 @@ const nextConfig = {
     domains: ['localhost'],
     unoptimized: true,
   },
+  basePath: process.env.NODE_ENV === 'production' ? '/wolffcar-vitrine' : '',
 }
 
 module.exports = nextConfig 
