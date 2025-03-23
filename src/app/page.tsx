@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { getImagePath } from '@/lib/utils';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
           <div className="relative h-full">
             <div 
               className="h-full bg-cover bg-center"
-              style={{ backgroundImage: `url('${getImagePath('/images/hero-bg.jpg')}')`}}
+              style={{ backgroundImage: `url(${getImagePath('/images/hero-bg.jpg')})`}}
             />
           </div>
         </div>
@@ -23,12 +24,12 @@ export default function Home() {
             Conheça nossa seleção de carros e encontre o modelo ideal para você.
           </p>
           <div className="mt-10">
-            <a
+            <Link
               href="/carros"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-primary-50"
             >
               Ver Catálogo
-            </a>
+            </Link>
           </div>
         </div>
       </div>
