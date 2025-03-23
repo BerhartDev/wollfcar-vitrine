@@ -24,24 +24,31 @@ export default function CarDetails({ car }: CarDetailsProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image Gallery */}
         <div className="space-y-4">
-          <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+          {/* Main Image */}
+          <div className="relative w-full" style={{ paddingTop: '75%' }}> {/* 4:3 aspect ratio */}
             <Image
               src={mainImage}
               alt={`${car.brand} ${car.model}`}
-              width={800}
-              height={600}
-              className="object-cover"
+              fill
+              className="object-cover rounded-lg"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
             />
           </div>
-          <div className="grid grid-cols-4 gap-4">
+          {/* Thumbnail Gallery */}
+          <div className="grid grid-cols-4 gap-2">
             {images.slice(1).map((image, index) => (
-              <div key={index} className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+              <div 
+                key={index} 
+                className="relative w-full"
+                style={{ paddingTop: '75%' }} // 4:3 aspect ratio
+              >
                 <Image
                   src={image}
                   alt={`${car.brand} ${car.model} - Imagem ${index + 2}`}
-                  width={200}
-                  height={200}
-                  className="object-cover"
+                  fill
+                  className="object-cover rounded-lg"
+                  sizes="(max-width: 768px) 25vw, (max-width: 1200px) 15vw, 10vw"
                 />
               </div>
             ))}
