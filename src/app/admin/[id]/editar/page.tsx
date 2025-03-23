@@ -1,9 +1,5 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import CarForm from '@/components/CarForm';
-import { Car } from '@/types/Car';
 import { mockCars } from '@/lib/mockData';
+import EditCarForm from './EditCarForm';
 
 interface EditCarPageProps {
   params: {
@@ -19,7 +15,6 @@ export async function generateStaticParams() {
 }
 
 export default function EditCarPage({ params }: EditCarPageProps) {
-  const router = useRouter();
   const car = mockCars.find((c) => c.id === params.id);
 
   if (!car) {
@@ -31,20 +26,10 @@ export default function EditCarPage({ params }: EditCarPageProps) {
     );
   }
 
-  const handleSubmit = async (data: Car) => {
-    try {
-      // TODO: Implement API call
-      console.log('Updated car data:', data);
-      router.push('/admin');
-    } catch (error) {
-      console.error('Error updating car:', error);
-    }
-  };
-
   return (
     <div>
       <h2 className="text-xl font-semibold text-gray-900 mb-6">Editar Carro</h2>
-      <CarForm car={car} onSubmit={handleSubmit} />
+      <EditCarForm car={car} />
     </div>
   );
 } 
