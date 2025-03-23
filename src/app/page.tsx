@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import { getImagePath } from '@/lib/utils';
 
 export default function Home() {
   return (
@@ -7,7 +8,10 @@ export default function Home() {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
           <div className="relative h-full">
-            <div className="h-full bg-[url('/images/hero-bg.jpg')] bg-cover bg-center" />
+            <div 
+              className="h-full bg-cover bg-center"
+              style={{ backgroundImage: `url('${getImagePath('/images/hero-bg.jpg')}')`}}
+            />
           </div>
         </div>
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">

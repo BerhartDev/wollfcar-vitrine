@@ -1,4 +1,5 @@
 import { Car } from '@/types/Car';
+import { getImagePath } from './utils';
 
 export const mockCars: Car[] = [
   {
@@ -13,9 +14,9 @@ export const mockCars: Car[] = [
     color: 'Prata',
     description: 'Toyota Corolla XEi em excelente estado, único dono, todas as revisões na concessionária.',
     images: [
-      '/images/cars/corolla-1.jpg',
-      '/images/cars/corolla-2.jpg',
-      '/images/cars/corolla-3.jpg'
+      getImagePath('/images/cars/corolla-1.jpg'),
+      getImagePath('/images/cars/corolla-2.jpg'),
+      getImagePath('/images/cars/corolla-3.jpg')
     ]
   },
   {
@@ -30,9 +31,9 @@ export const mockCars: Car[] = [
     color: 'Preto',
     description: 'Honda Civic EXL com teto solar, câmera de ré e bancos em couro.',
     images: [
-      '/images/cars/civic-1.jpg',
-      '/images/cars/civic-2.jpg',
-      '/images/cars/civic-3.jpg'
+      getImagePath('/images/cars/civic-1.jpg'),
+      getImagePath('/images/cars/civic-2.jpg'),
+      getImagePath('/images/cars/civic-3.jpg')
     ]
   },
   {
@@ -47,9 +48,9 @@ export const mockCars: Car[] = [
     color: 'Branco',
     description: 'Jeep Compass Limited com pacote premium, teto panorâmico e central multimídia.',
     images: [
-      '/images/cars/compass-1.jpg',
-      '/images/cars/compass-2.jpg',
-      '/images/cars/compass-3.jpg'
+      getImagePath('/images/cars/compass-1.jpg'),
+      getImagePath('/images/cars/compass-2.jpg'),
+      getImagePath('/images/cars/compass-3.jpg')
     ]
   }
 ]; 
