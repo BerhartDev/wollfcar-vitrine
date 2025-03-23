@@ -8,11 +8,10 @@ const nextConfig = {
         hostname: '**',
       },
     ],
-    domains: ['localhost'],
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/wolffcar-vitrine' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/wolffcar-vitrine' : '',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
 }
 
 module.exports = nextConfig 
