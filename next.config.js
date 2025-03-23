@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+const isProduction = process.env.NODE_ENV === 'production';
+const repoName = 'wollfcar-vitrine';
+
 const nextConfig = {
   output: 'export',
   images: {
@@ -10,8 +13,9 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  basePath: isProduction ? `/${repoName}` : '',
+  assetPrefix: isProduction ? `/${repoName}/` : '',
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
