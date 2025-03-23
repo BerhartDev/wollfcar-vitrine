@@ -9,13 +9,24 @@ interface CarDetailsPageProps {
   };
 }
 
+// This function tells Next.js which dynamic routes to pre-render
+export async function generateStaticParams() {
+  return mockCars.map((car) => ({
+    id: car.id,
+  }));
+}
+
 export default function CarDetailsPage({ params }: CarDetailsPageProps) {
+  console.log('Params:', params);
+  console.log('Available cars:', mockCars);
   const car = mockCars.find((car) => car.id === params.id);
+  console.log('Found car:', car);
 
   if (!car) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <h1 className="text-2xl font-bold text-gray-900">Carro não encontrado</h1>
+        <p className="mt-2 text-gray-600">ID: {params.id}</p>
       </div>
     );
   }
@@ -27,6 +38,10 @@ export default function CarDetailsPage({ params }: CarDetailsPageProps) {
     }).format(value);
   };
 
+  // Ensure car.images is an array and has at least one item
+  const images = Array.isArray(car.images) ? car.images : [];
+  const mainImage = images[0] || '/images/placeholder.jpg';
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -34,7 +49,7 @@ export default function CarDetailsPage({ params }: CarDetailsPageProps) {
         <div className="space-y-4">
           <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
             <Image
-              src={car.images[0] || '/images/placeholder.jpg'}
+              src={mainImage}
               alt={`${car.brand} ${car.model}`}
               width={800}
               height={600}
@@ -42,7 +57,7 @@ export default function CarDetailsPage({ params }: CarDetailsPageProps) {
             />
           </div>
           <div className="grid grid-cols-4 gap-4">
-            {car.images.slice(1).map((image, index) => (
+            {images.slice(1).map((image, index) => (
               <div key={index} className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
                 <Image
                   src={image}

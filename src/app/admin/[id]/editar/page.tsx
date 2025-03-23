@@ -11,6 +11,13 @@ interface EditCarPageProps {
   };
 }
 
+// This function tells Next.js which dynamic routes to pre-render
+export async function generateStaticParams() {
+  return mockCars.map((car) => ({
+    id: car.id,
+  }));
+}
+
 export default function EditCarPage({ params }: EditCarPageProps) {
   const router = useRouter();
   const car = mockCars.find((c) => c.id === params.id);
@@ -24,7 +31,7 @@ export default function EditCarPage({ params }: EditCarPageProps) {
     );
   }
 
-  const handleSubmit = async (data: Omit<Car, 'id'>) => {
+  const handleSubmit = async (data: Car) => {
     try {
       // TODO: Implement API call
       console.log('Updated car data:', data);
